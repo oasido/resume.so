@@ -1,8 +1,8 @@
 import type { NextPage } from 'next';
-import { useState } from 'react';
 import { createStyles, Stack, Button, ActionIcon } from '@mantine/core';
 import { VscAdd } from 'react-icons/vsc';
 import { AddSectionModal } from './AddSectionModal';
+import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -31,44 +31,15 @@ const useStyles = createStyles((theme) => ({
 
 export const Sections: NextPage = () => {
   const { classes } = useStyles();
-  const [sections, setSections] = useState<string[]>([
-    'Heading',
-    'About',
-    'Work Experience',
-    'Projects',
-    'Education',
-  ]);
-  const [selected, setSelected] = useState<number>(0);
-  const [modalOpened, setModalOpened] = useState<boolean>(false);
-  const [newSection, setNewSection] = useState<string>('');
-
-  const addCustomSection = (name: string): void => {
-    if (newSection.length > 0 && sections.indexOf(name) === -1) {
-      setSections((previousSections) => [...previousSections, newSection]);
-      setNewSection('');
-      setModalOpened(false);
-    }
-  };
+  const { sections, setSections, setAddSectionModalOpened, selected, setSelected } = useStore();
 
   const removeSection = (idx: number): void => {
-    // figure out why .splice isn't working properly.
-    setSections((previousSections) => {
-      return previousSections.filter((section) => previousSections.indexOf(section) !== idx);
-    });
-  };
-
-  const modalProps = {
-    addCustomSection,
-    removeSection,
-    modalOpened,
-    setModalOpened,
-    newSection,
-    setNewSection,
+    setSections(sections.filter((section) => sections.indexOf(section) !== idx));
   };
 
   return (
     <>
-      <AddSectionModal {...modalProps} />
+      <AddSectionModal />
       <div className={classes.container}>
         <Stack spacing="sm">
           <ul className={classes.list}>
@@ -102,8 +73,7 @@ export const Sections: NextPage = () => {
             size="lg"
             variant={selected === sections.length + 1 ? 'outline' : 'default'}
             onClick={() => {
-              // setSelected(sections.length + 1);
-              setModalOpened(true);
+              setAddSectionModalOpened(true);
             }}
             leftIcon={<VscAdd size={20} />}
           >

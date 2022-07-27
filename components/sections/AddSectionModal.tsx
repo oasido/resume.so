@@ -1,6 +1,7 @@
 import { ChangeEvent } from 'react';
 import { createStyles, Modal, Title, Input, Button } from '@mantine/core';
 import { TbSection } from 'react-icons/tb';
+import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
   modalButtonsWrapper: {
@@ -11,21 +12,29 @@ const useStyles = createStyles((theme) => ({
   },
 }));
 
-export const AddSectionModal = (modalProps: any) => {
+export const AddSectionModal = () => {
   const {
-    addCustomSection,
-    removeSection,
-    modalOpened,
-    setModalOpened,
+    addSectionModalOpened,
+    setAddSectionModalOpened,
+    sections,
+    setSections,
     newSection,
     setNewSection,
-  } = modalProps;
+  } = useStore();
   const { classes } = useStyles();
+
+  const addCustomSection = (name: string): void => {
+    if (newSection.length > 0 && sections.indexOf(name) === -1) {
+      setSections([...sections, newSection]);
+      setNewSection('');
+      setAddSectionModalOpened(false);
+    }
+  };
 
   return (
     <Modal
-      opened={modalOpened}
-      onClose={() => setModalOpened(false)}
+      opened={addSectionModalOpened}
+      onClose={() => setAddSectionModalOpened(false)}
       onKeyDown={({ key }) => {
         key === 'Enter' && newSection.length > 0 && addCustomSection(newSection);
       }}
@@ -40,7 +49,7 @@ export const AddSectionModal = (modalProps: any) => {
         onChange={(evt: ChangeEvent<HTMLInputElement>) => setNewSection(evt.target.value)}
       />
       <div className={classes.modalButtonsWrapper}>
-        <Button onClick={() => setModalOpened(false)} fullWidth size="lg" color="gray">
+        <Button onClick={() => setAddSectionModalOpened(false)} fullWidth size="lg" color="gray">
           Cancel
         </Button>
         <Button onClick={() => addCustomSection(newSection)} fullWidth size="lg" color="green">
