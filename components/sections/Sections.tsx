@@ -6,7 +6,11 @@ import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    // backgroundColor: 'gray',
+    // flex flex-0 drawer-height absolute md:static p-6 md:p-0 bg-white dark:bg-gray-800 z-10 md:z-0
+    // transform  transition-transform duration-500 ease-in-out -translate-x-full md:transform-none
+    backgroundColor: 'lightgreen',
+    display: 'flex',
+    padding: '1rem',
   },
 
   list: {
