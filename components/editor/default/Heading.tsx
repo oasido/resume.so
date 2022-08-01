@@ -8,12 +8,20 @@ const useStyles = createStyles((theme) => ({
   container: {
     // backgroundColor: 'red',
   },
+
   mb: {
     marginBottom: '1rem',
   },
+
   titleWithShowMore: {
     display: 'flex',
-    justifyContent: 'space-between',
+    '& button': {
+      marginLeft: '0.5rem',
+    },
+  },
+
+  input: {
+    maxWidth: '20rem',
   },
 }));
 
@@ -31,7 +39,7 @@ export const Heading = () => {
       </Text>
 
       <Input
-        className={classes.mb}
+        className={`${classes.mb} ${classes.input}`}
         size="lg"
         icon={<BiUserCircle size="25" />}
         placeholder="Your full name"
@@ -52,7 +60,7 @@ export const Heading = () => {
         </Text>
       </Collapse>
       <Input
-        className={classes.mb}
+        className={`${classes.mb} ${classes.input}`}
         size="lg"
         icon={<BiUserCircle size="25" />}
         placeholder="Email address"
@@ -60,7 +68,7 @@ export const Heading = () => {
         onChange={(evt: ChangeEvent<HTMLInputElement>) => setName(evt.target.value)}
       />
       <Input
-        className={classes.mb}
+        className={`${classes.mb} ${classes.input}`}
         size="lg"
         icon={<AiOutlinePhone size="25" />}
         placeholder="Phone"

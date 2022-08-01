@@ -4,7 +4,12 @@ import { Heading } from '@components/editor/default/Heading';
 
 const useStyles = createStyles((theme) => ({
   container: {
+    padding: '2rem 1rem',
     backgroundColor: theme.colors.gray[1],
+
+    [theme.fn.largerThan('sm')]: {
+      padding: '2rem 4rem',
+    },
   },
 }));
 
@@ -30,6 +35,6 @@ export const Editor = () => {
     }
   };
 
-  // return <div className={classes.container}>{handleInputs()}</div>;
-  return <Container className={classes.container}>{handleInputs()}</Container>;
+  return <div className={classes.container}>{handleInputs()}</div>;
+  // return <Container className={classes.container}>{handleInputs()}</Container>;
 };
