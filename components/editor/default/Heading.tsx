@@ -1,3 +1,4 @@
+import { InputField } from './modules/InputField';
 import { useUserData } from '@context/useUserData';
 import { createStyles, Text, Input, Title, ActionIcon, Collapse } from '@mantine/core';
 import { ChangeEvent, useState } from 'react';
@@ -26,7 +27,7 @@ const useStyles = createStyles((theme) => ({
 }));
 
 export const Heading = () => {
-  const { name, setName } = useUserData();
+  const { fields, setFields } = useUserData();
   const { classes } = useStyles();
   const [openContact, setOpenContact] = useState<boolean>(false);
 
@@ -43,8 +44,8 @@ export const Heading = () => {
         size="lg"
         icon={<BiUserCircle size="25" />}
         placeholder="Your full name"
-        value={name}
-        onChange={(evt: ChangeEvent<HTMLInputElement>) => setName(evt.target.value)}
+        value={fields.name}
+        onChange={(evt: ChangeEvent<HTMLInputElement>) => setFields({ name: evt.target.value })}
       />
 
       <div className={classes.titleWithShowMore}>
@@ -59,23 +60,28 @@ export const Heading = () => {
           john_doe50433@gmail.com, mosquitoman911@gmail.com
         </Text>
       </Collapse>
+
       <Input
         className={`${classes.mb} ${classes.input}`}
         size="lg"
         icon={<BiUserCircle size="25" />}
         placeholder="Email address"
-        value={name}
-        onChange={(evt: ChangeEvent<HTMLInputElement>) => setName(evt.target.value)}
+        value={fields.email}
+        onChange={(evt: ChangeEvent<HTMLInputElement>) => setFields({ email: evt.target.value })}
       />
       <Input
         className={`${classes.mb} ${classes.input}`}
         size="lg"
         icon={<AiOutlinePhone size="25" />}
         placeholder="Phone"
-        value={name}
-        onChange={(evt: ChangeEvent<HTMLInputElement>) => setName(evt.target.value)}
+        value={fields.phone}
+        onChange={(evt: ChangeEvent<HTMLInputElement>) => setFields({ phone: evt.target.value })}
       />
+      {/* linkedin */}
+
       {/* email, other links, phone number, location */}
+
+      <Title order={4}>Additional inputs</Title>
     </div>
   );
 };
