@@ -1,4 +1,13 @@
-export interface UserData {
+export type Fields = {
   name: string;
-  setName: (value: string) => void;
+  email: string;
+  location?: string;
+  phone?: string;
+  linkedin?: string;
+  [key: string]: string;
+};
+
+export interface UserData {
+  fields: Fields;
+  setFields: (data: Partial<Fields>) => void;
 }
