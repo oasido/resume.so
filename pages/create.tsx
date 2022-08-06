@@ -1,5 +1,5 @@
 import type { NextPage } from 'next';
-import { createStyles, SimpleGrid, AppShell, Navbar, Text, Container } from '@mantine/core';
+import { createStyles } from '@mantine/core';
 import Sections from '@components/sections';
 import Editor from '@components/editor';
 import Preview from '@components/preview';
@@ -19,7 +19,6 @@ const useStyles = createStyles((theme) => ({
 }));
 
 const Create: NextPage = () => {
-  const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
 
   return (
