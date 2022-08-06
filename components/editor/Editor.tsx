@@ -4,11 +4,11 @@ import { Heading } from '@components/editor/default/Heading';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    padding: '2rem 1rem',
+    padding: '0.5rem',
     backgroundColor: theme.colors.gray[1],
 
     [theme.fn.largerThan('sm')]: {
-      padding: '2rem 4rem',
+      padding: '1rem',
     },
   },
 }));
