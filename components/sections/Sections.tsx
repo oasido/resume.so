@@ -58,7 +58,7 @@ export const Sections: NextPage = () => {
                     setSelected(idx);
                   }}
                 >
-                  <span>{section}</span>
+                  <span>{section.title}</span>
                 </Button>
                 {selected === idx ? (
                   <ActionIcon
