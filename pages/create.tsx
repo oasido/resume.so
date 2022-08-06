@@ -2,7 +2,7 @@ import type { NextPage } from 'next';
 import { createStyles, SimpleGrid, AppShell, Navbar, Text, Container } from '@mantine/core';
 import Sections from '@components/sections';
 import Editor from '@components/editor';
-import { useState } from 'react';
+import Preview from '@components/preview';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -36,6 +36,7 @@ const Create: NextPage = () => {
       <div className={classes.container}>
         <Sections />
         <Editor />
+        <Preview />
       </div>
       {/* <div className={classes.preview}>Preview</div> */}
       {/* </SimpleGrid> */}
