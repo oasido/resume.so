@@ -1,6 +1,11 @@
+export type Section = {
+  title: string;
+  text: string;
+};
+
 export interface Store {
-  sections: string[];
-  setSections: (data: string[]) => void;
+  sections: Section[];
+  setSections: (data: Section[]) => void;
   selected: number;
   setSelected: (idx: number) => void;
   addSectionModalOpened: boolean;
