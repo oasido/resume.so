@@ -23,9 +23,9 @@ export const AddSectionModal = () => {
   } = useStore();
   const { classes } = useStyles();
 
-  const addCustomSection = (name: string): void => {
-    if (newSection.length > 0 && sections.indexOf(name) === -1) {
-      setSections([...sections, newSection]);
+  const addCustomSection = (): void => {
+    if (newSection.length > 0) {
+      setSections([...sections, { title: newSection, text: '' }]);
       setNewSection('');
       setAddSectionModalOpened(false);
     }
@@ -36,7 +36,7 @@ export const AddSectionModal = () => {
       opened={addSectionModalOpened}
       onClose={() => setAddSectionModalOpened(false)}
       onKeyDown={({ key }) => {
-        key === 'Enter' && newSection.length > 0 && addCustomSection(newSection);
+        key === 'Enter' && newSection.length > 0 && addCustomSection();
       }}
       title={<Title order={3}>✨ New Custom Section</Title>}
       centered
@@ -48,11 +48,12 @@ export const AddSectionModal = () => {
         value={newSection}
         onChange={(evt: ChangeEvent<HTMLInputElement>) => setNewSection(evt.target.value)}
       />
+      predefined sections are, heading... etc (wip)
       <div className={classes.modalButtonsWrapper}>
         <Button onClick={() => setAddSectionModalOpened(false)} fullWidth size="lg" color="gray">
           Cancel
         </Button>
-        <Button onClick={() => addCustomSection(newSection)} fullWidth size="lg" color="green">
+        <Button onClick={() => addCustomSection()} fullWidth size="lg" color="green">
           Add Section
         </Button>
       </div>
