@@ -38,7 +38,7 @@ export const Sections: NextPage = () => {
   const { sections, setSections, setAddSectionModalOpened, selected, setSelected } = useStore();
 
   const removeSection = (idx: number): void => {
-    setSections(sections.filter((section) => sections.indexOf(section) !== idx));
+    setSections(sections.slice(0, idx).concat(sections.slice(idx + 1, sections.length)));
   };
 
   return (
