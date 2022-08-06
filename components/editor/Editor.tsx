@@ -18,7 +18,7 @@ export const Editor = () => {
   const { sections, selected } = useStore();
 
   const handleInputs = () => {
-    const currentSelectedSection = sections[selected];
+    const currentSelectedSection = sections.length > 0 ? sections[selected].title : null;
     switch (currentSelectedSection) {
       case 'Heading':
         return <Heading />;
@@ -30,6 +30,8 @@ export const Editor = () => {
         break;
       case 'Education':
         break;
+      case null:
+        return 'Emptiness!';
       default:
         return 'some textarea';
     }
