@@ -1,4 +1,4 @@
-import { createStyles, Container } from '@mantine/core';
+import { createStyles } from '@mantine/core';
 import { useStore } from '@context/useStore';
 import { Heading } from '@components/editor/default/Heading';
 
@@ -38,5 +38,4 @@ export const Editor = () => {
   };
 
   return <div className={classes.container}>{handleInputs()}</div>;
-  // return <Container className={classes.container}>{handleInputs()}</Container>;
 };
