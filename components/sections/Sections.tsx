@@ -3,7 +3,6 @@ import { createStyles, Stack, Button, ActionIcon } from '@mantine/core';
 import { VscAdd } from 'react-icons/vsc';
 import { AddSectionModal } from './AddSectionModal';
 import { useStore } from '@context/useStore';
-import { remove } from 'lodash';
 
 const useStyles = createStyles((theme) => ({
   container: {
