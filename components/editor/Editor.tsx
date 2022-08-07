@@ -1,6 +1,6 @@
 import { createStyles } from '@mantine/core';
 import { useStore } from '@context/useStore';
-import { Heading } from '@components/editor/default/Heading';
+import { MarkdownTextarea } from '@components/editor/MarkdownTextarea';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -21,7 +21,7 @@ export const Editor = () => {
     const currentSelectedSection = sections.length > 0 ? sections[selected].title : null;
     switch (currentSelectedSection) {
       case 'Heading':
-        return <Heading />;
+        return <MarkdownTextarea />;
       case 'About':
         break;
       case 'Work Experience':

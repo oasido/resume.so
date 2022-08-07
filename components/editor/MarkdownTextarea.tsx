@@ -4,7 +4,6 @@ import remarkGfm from 'remark-gfm';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    // backgroundColor: theme.colors.gray[6],
     borderRadius: '0.5rem',
     width: '100%',
     padding: '0.1rem 1rem',
@@ -12,7 +11,7 @@ const useStyles = createStyles((theme) => ({
   textarea: {},
 }));
 
-export const Heading = () => {
+export const MarkdownTextarea = () => {
   const { classes } = useStyles();
 
   return <Textarea size="lg" minRows={10} minLength={10} placeholder="" />;
