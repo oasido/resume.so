@@ -17,3 +17,5 @@ export const useStore = create<Store>((set) => ({
   newSection: '',
   setNewSection: (value) => set(() => ({ newSection: value })),
 }));
+
+// setFields: (data: Partial<Fields>) => set(({ fields }: any) => ({ fields: { ...fields, ...data } })),
