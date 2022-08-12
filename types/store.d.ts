@@ -12,4 +12,6 @@ export interface Store {
   setAddSectionModalOpened: (bool: boolean) => void;
   newSection: string;
   setNewSection: (newSection: string) => void;
+  showSections: boolean;
+  setShowSections: (bool: boolean) => void;
 }

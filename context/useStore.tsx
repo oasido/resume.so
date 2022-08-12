@@ -22,4 +22,6 @@ export const useStore = create<Store>((set) => ({
   setAddSectionModalOpened: (bool) => set(() => ({ addSectionModalOpened: bool })),
   newSection: '',
   setNewSection: (value) => set(() => ({ newSection: value })),
+  showSections: false,
+  setShowSections: (bool) => set(() => ({ showSections: bool })),
 }));
