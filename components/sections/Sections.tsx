@@ -6,11 +6,16 @@ import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    // flex flex-0 drawer-height absolute md:static p-6 md:p-0 bg-white dark:bg-gray-800 z-10 md:z-0
-    // transform  transition-transform duration-500 ease-in-out -translate-x-full md:transform-none
-    backgroundColor: 'lightgreen',
-    display: 'flex',
-    padding: '1rem',
+    backgroundColor: theme.white,
+
+    [theme.fn.smallerThan('sm')]: {
+      zIndex: 10,
+      position: 'absolute',
+      maxWidth: '25rem',
+      padding: '1rem 2rem',
+      borderRadius: theme.radius.sm,
+      boxShadow: '10px 10px 15px -3px rgba(0,0,0,0.15)',
+    },
   },
 
   list: {
@@ -38,7 +43,8 @@ export const Sections: NextPage = () => {
   const { sections, setSections, setAddSectionModalOpened, selected, setSelected } = useStore();
 
   const removeSection = (idx: number): void => {
-    setSections(sections.filter((section) => sections.indexOf(section) !== idx));
+    setSelected(selected < 0 ? selected - 1 : 0);
+    setSections(sections.slice(0, idx).concat(sections.slice(idx + 1, sections.length)));
   };
 
   return (
@@ -50,7 +56,7 @@ export const Sections: NextPage = () => {
             {sections.map((section, idx) => (
               <li key={idx} className={classes.listItem}>
                 <Button
-                  size="lg"
+                  size="xl"
                   fullWidth
                   variant={selected === idx ? 'outline' : 'default'}
                   component="div"
@@ -58,7 +64,7 @@ export const Sections: NextPage = () => {
                     setSelected(idx);
                   }}
                 >
-                  <span>{section}</span>
+                  <span>{section.title}</span>
                 </Button>
                 {selected === idx ? (
                   <ActionIcon
@@ -74,7 +80,7 @@ export const Sections: NextPage = () => {
             ))}
           </ul>
           <Button
-            size="lg"
+            size="xl"
             variant={selected === sections.length + 1 ? 'outline' : 'default'}
             onClick={() => {
               setAddSectionModalOpened(true);

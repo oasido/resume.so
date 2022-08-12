@@ -1,13 +1,15 @@
 import type { NextPage } from 'next';
-import { createStyles, SimpleGrid, AppShell, Navbar, Text, Container } from '@mantine/core';
+import { createStyles, Grid, Container, Transition } from '@mantine/core';
 import Sections from '@components/sections';
 import Editor from '@components/editor';
-import { useState } from 'react';
+import Preview from '@components/preview';
+import Navbar from '@components/Navbar';
+import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
-  container: {
-    padding: '2rem',
-    display: 'flex',
+  grid: {
+    width: '100%',
+    height: '100%',
   },
 
   editor: {
@@ -16,29 +18,46 @@ const useStyles = createStyles((theme) => ({
   preview: {
     backgroundColor: 'lightblue',
   },
+
+  hide: {
+    [theme.fn.smallerThan('sm')]: {
+      display: 'none',
+    },
+  },
+  zIndex: {
+    zIndex: 10,
+  },
 }));
 
 const Create: NextPage = () => {
-  const [opened, setOpened] = useState(false);
   const { classes } = useStyles();
+  const { showSections } = useStore();
 
   return (
     <>
-      {/* <SimpleGrid
-        cols={2}
-        className={classes.grid}
-        breakpoints={[
-          { maxWidth: 980, cols: 3, spacing: 'md' },
-          { maxWidth: 755, cols: 2, spacing: 'sm' },
-          { maxWidth: 600, cols: 1, spacing: 'sm' },
-        ]}
-      > */}
-      <div className={classes.container}>
-        <Sections />
-        <Editor />
-      </div>
-      {/* <div className={classes.preview}>Preview</div> */}
-      {/* </SimpleGrid> */}
+      <Navbar />
+      <Container size={2000}>
+        <Grid grow className={classes.grid}>
+          <Transition mounted={showSections} transition="scale-x" duration={220}>
+            {(styles) => (
+              <div style={styles} className={classes.zIndex}>
+                <Sections />
+              </div>
+            )}
+          </Transition>
+          {!showSections && (
+            <Grid.Col className={classes.hide} span={1} style={{ maxWidth: 'fit-content' }}>
+              <Sections />
+            </Grid.Col>
+          )}
+          <Grid.Col span={4}>
+            <Editor />
+          </Grid.Col>
+          <Grid.Col span={4}>
+            <Preview />
+          </Grid.Col>
+        </Grid>
+      </Container>
     </>
   );
 };
