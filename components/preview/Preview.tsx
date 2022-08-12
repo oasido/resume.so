@@ -4,7 +4,14 @@ import { createStyles } from '@mantine/core';
 import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
-  container: {},
+  container: {
+    padding: '0.5rem',
+    borderRadius: theme.radius.sm,
+    border: '1px solid #ced4da',
+    position: 'relative',
+    minHeight: '301px',
+  },
+
 }));
 
 export const Preview = () => {
