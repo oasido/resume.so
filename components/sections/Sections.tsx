@@ -34,7 +34,7 @@ const useStyles = createStyles((theme) => ({
   deleteSectionButton: {
     position: 'absolute',
     right: '0.7rem',
-    top: '0.7rem',
+    top: '0.9rem',
   },
 }));
 
