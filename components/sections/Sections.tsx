@@ -51,7 +51,7 @@ export const Sections: NextPage = () => {
             {sections.map((section, idx) => (
               <li key={idx} className={classes.listItem}>
                 <Button
-                  size="lg"
+                  size="xl"
                   fullWidth
                   variant={selected === idx ? 'outline' : 'default'}
                   component="div"
@@ -75,7 +75,7 @@ export const Sections: NextPage = () => {
             ))}
           </ul>
           <Button
-            size="lg"
+            size="xl"
             variant={selected === sections.length + 1 ? 'outline' : 'default'}
             onClick={() => {
               setAddSectionModalOpened(true);
