@@ -6,11 +6,16 @@ import { useStore } from '@context/useStore';
 
 const useStyles = createStyles((theme) => ({
   container: {
-    // flex flex-0 drawer-height absolute md:static p-6 md:p-0 bg-white dark:bg-gray-800 z-10 md:z-0
-    // transform  transition-transform duration-500 ease-in-out -translate-x-full md:transform-none
-    backgroundColor: 'lightgreen',
-    display: 'flex',
-    padding: '1rem',
+    backgroundColor: theme.white,
+
+    [theme.fn.smallerThan('sm')]: {
+      zIndex: 10,
+      position: 'absolute',
+      maxWidth: '25rem',
+      padding: '1rem 2rem',
+      borderRadius: theme.radius.sm,
+      boxShadow: '10px 10px 15px -3px rgba(0,0,0,0.15)',
+    },
   },
 
   list: {
