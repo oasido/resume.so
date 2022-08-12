@@ -1,6 +1,6 @@
-import { createStyles, Textarea, Text, Input, Title, ActionIcon, Collapse } from '@mantine/core';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
+import { createStyles, Textarea } from '@mantine/core';
+import { useStore } from '@context/useStore';
+import { ChangeEvent } from 'react';
 
 const useStyles = createStyles((theme) => ({
   container: {
@@ -13,6 +13,29 @@ const useStyles = createStyles((theme) => ({
 
 export const MarkdownTextarea = () => {
   const { classes } = useStyles();
+  const { sections, setSections, selected } = useStore();
 
-  return <Textarea size="lg" minRows={10} minLength={10} placeholder="" />;
+  const updateText = (evt: ChangeEvent<HTMLTextAreaElement>) => {
+    const updatedSections = sections.map((section, idx) => {
+      if (selected === idx) {
+        section.text = evt.target.value;
+        return section;
+      } else {
+        return section;
+      }
+    });
+
+    setSections([...updatedSections]);
+  };
+
+  return (
+    <Textarea
+      value={sections[selected] ? sections[selected].text : ''}
+      onChange={(evt: ChangeEvent<HTMLTextAreaElement>) => updateText(evt)}
+      size="lg"
+      minRows={10}
+      minLength={10}
+      placeholder=""
+    />
+  );
 };
