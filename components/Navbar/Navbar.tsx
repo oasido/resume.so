@@ -31,6 +31,7 @@ const useStyles = createStyles((theme) => ({
 
   github: {
     display: 'none',
+
     [theme.fn.largerThan('sm')]: {
       display: 'block',
     },
@@ -59,7 +60,11 @@ export const Navbar = () => {
           />
 
           <ActionIcon size="xl" className={classes.github}>
-            <BsGithub size={30} />
+            <Link href="https://github.com/oasido/resume.so" passHref>
+              <a target="_blank">
+                <BsGithub size={30} />
+              </a>
+            </Link>
           </ActionIcon>
         </Container>
       </Header>
