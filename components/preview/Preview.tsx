@@ -16,12 +16,12 @@ const useStyles = createStyles((theme) => ({
 
 export const Preview = () => {
   const { classes } = useStyles();
-  const { sections, setSections } = useStore();
-  console.log(sections);
+  const { sections } = useStore();
+  const markdown = sections.map((section) => section.text.replace('\n', '\n\n')).join('\r\n');
 
   return (
     <div className={classes.container}>
-      {/* <ReactMarkdown remarkPlugins={[remarkGfm]}>hi</ReactMarkdown> */}
+      <ReactMarkdown remarkPlugins={[remarkGfm]}>{markdown}</ReactMarkdown>
     </div>
   );
 };
