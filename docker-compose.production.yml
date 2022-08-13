@@ -1,0 +1,10 @@
+version: '4.0'
+
+services:
+  app:
+    image: resume.so-production
+    build:
+      dockerfile: Dockerfile.production
+    restart: always
+    ports:
+      - 3000:3000
