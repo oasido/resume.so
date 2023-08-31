@@ -2,7 +2,7 @@
 
 Inspired by readme.so, resume.so helps you create a markdown version of your resume.
 
-### [**View Demo**](https://resume-so.ofekasido.xyz/)
+### [**View Demo**](https://youtu.be/RI0_rmZ0nKI)
 
 #
 
